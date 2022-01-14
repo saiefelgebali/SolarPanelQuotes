@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarPanels.Tests", "SolarPanels.Tests\SolarPanels.Tests.csproj", "{1394E400-1B63-4570-846A-27C93AC074C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarPanels.Core", "SolarPanels.Core\SolarPanels.Core.csproj", "{471EF86A-0FC2-49F6-8F96-4E6AE018C0FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1394E400-1B63-4570-846A-27C93AC074C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1394E400-1B63-4570-846A-27C93AC074C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1394E400-1B63-4570-846A-27C93AC074C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1394E400-1B63-4570-846A-27C93AC074C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471EF86A-0FC2-49F6-8F96-4E6AE018C0FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471EF86A-0FC2-49F6-8F96-4E6AE018C0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471EF86A-0FC2-49F6-8F96-4E6AE018C0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471EF86A-0FC2-49F6-8F96-4E6AE018C0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9AF0397-6F0C-47C2-B487-CC94CD5CC2AE}
+	EndGlobalSection
+EndGlobal
