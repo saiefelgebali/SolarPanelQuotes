@@ -12,13 +12,11 @@ namespace SolarPanels.Core.Models
         public readonly string Manufacturer;
         public readonly string Model;
         public readonly string Url;
-
-        public readonly double Length;
-        public readonly double Width;
         public readonly double Power;
         public readonly double Efficiency;
         public readonly double Weight;
         public readonly double Cost;
+        public readonly (double, double) Size;
 
         public Panel(JSONPanel jsonPanel)
         {
@@ -35,8 +33,9 @@ namespace SolarPanels.Core.Models
 
             // Convert 'Size' tuple to 'Length' and 'Width' properties
             var size = jsonPanel.Size.Split(',');
-            Length = Convert.ToDouble(size[0]);
-            Width = Convert.ToDouble(size[1]);
+            var length = Convert.ToDouble(size[0]);
+            var width = Convert.ToDouble(size[1]);
+            Size = (length, width);
         }
     }
 }
