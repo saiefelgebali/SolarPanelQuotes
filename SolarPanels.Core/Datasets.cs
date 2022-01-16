@@ -9,12 +9,47 @@ using SolarPanels.Core.Data.Models;
 
 namespace SolarPanels.Core
 {
-    public static class Datasets
+    public class DaylightDataset
     {
-        public static Dataset<Daylight, JSONDaylight> DaylightDataset(string path) => new(path);
-        public static Dataset<House, JSONHouse> HouseDataset(string path) => new(path);
-        public static Dataset<Installer, JSONInstaller> InstallerDataset(string path) => new(path);
-        public static Dataset<Panel, JSONPanel> PanelDataset(string path) => new(path);
-        public static Dataset<Tariff, JSONTariff> TariffDataset(string path) => new(path);
+        public readonly Daylight[] Data;
+
+        public DaylightDataset(string path)
+        {
+            Data = Dataset<Daylight, JSONDaylight>.FromPath(path);
+        }
+    }
+    public class HouseDataset
+    {
+        public readonly House[] Data;
+
+        public HouseDataset(string path)
+        {
+            Data = Dataset<House, JSONHouse>.FromPath(path);
+        }
+    }
+    public class InstallerDataset
+    {
+        public readonly Installer[] Data;
+
+        public InstallerDataset(string path)
+        {
+            Data = Dataset<Installer, JSONInstaller>.FromPath(path);
+        }
+    }
+    public class PanelDataset
+    {
+        public readonly Panel[] Data;
+        public PanelDataset(string path)
+        {
+            Data = Dataset<Panel, JSONPanel>.FromPath(path);
+        }
+    }
+    public class TariffDataset
+    {
+        public readonly Tariff[] Data;
+        public TariffDataset(string path)
+        {
+            Data = Dataset<Tariff, JSONTariff>.FromPath(path);
+        }
     }
 }

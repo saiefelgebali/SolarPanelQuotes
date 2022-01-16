@@ -5,21 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using SolarPanels.Core.Data.JSON;
-using SolarPanels.Core.Data.Models;
 
 namespace SolarPanels.Core.Data
 {
     public class Dataset<T, J> where T : class, new()
     {
-        public T[] Data;
-
-        public Dataset(string path)
-        {
-            Data = FromPath(path);
-        }
-
-        public T[] FromPath(string path)
+        public static T[] FromPath(string path)
         {
             var text = File.ReadAllText(path);
 

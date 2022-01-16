@@ -16,7 +16,7 @@ namespace SolarPanels.Core.Data.Models
         public readonly double Efficiency;
         public readonly double Weight;
         public readonly double Cost;
-        public readonly (double, double) Size;
+        public readonly (double Length, double Width) Size;
 
         public Panel() { }
 

@@ -6,7 +6,7 @@ using System.IO;
 namespace SolarPanels.Tests
 {
     [TestClass]
-    public class DataTests
+    public class DatasetTests
     {
         static readonly string DataPath = "D:/datasets/SolarPanels";
         static readonly string DaylightPath = Path.Combine(DataPath, "Daylight.json");
@@ -18,7 +18,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseDaylights()
         {
-            var daylights = Datasets.DaylightDataset(DaylightPath);
+            var daylights = new DaylightDataset(DaylightPath);
 
             Assert.IsNotNull(daylights);
             Assert.IsNotNull(daylights.Data);
@@ -33,7 +33,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseHouses()
         {
-            var houses = Datasets.HouseDataset(HousesPath);
+            var houses = new HouseDataset(HousesPath);
 
             Assert.IsNotNull(houses);
             Assert.IsNotNull(houses.Data);
@@ -50,7 +50,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseInstallers()
         {
-            var installers = Datasets.InstallerDataset(InstallersPath);
+            var installers = new InstallerDataset(InstallersPath);
 
             Assert.IsNotNull(installers);
             Assert.IsNotNull(installers.Data);
@@ -66,7 +66,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParsePanels()
         {
-            var panels = Datasets.PanelDataset(PanelsPath);
+            var panels = new PanelDataset(PanelsPath);
 
             Assert.IsNotNull(panels);
             Assert.IsNotNull(panels.Data);
@@ -87,7 +87,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseTariffs()
         {
-            var tariffs = Datasets.TariffDataset(TariffsPath);
+            var tariffs = new TariffDataset(TariffsPath);
 
             Assert.IsNotNull(tariffs);
             Assert.IsNotNull(tariffs.Data);
