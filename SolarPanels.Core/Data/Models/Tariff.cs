@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SolarPanels.Core.JSON;
+using SolarPanels.Core.Data.JSON;
 
-namespace SolarPanels.Core.Models
+namespace SolarPanels.Core.Data.Models
 {
     public class Tariff
     {
@@ -15,6 +15,8 @@ namespace SolarPanels.Core.Models
         public readonly double MinimumFeedAmount;
         public readonly double MaximumFeedAmount;
         public readonly DateTime Expiry;
+
+        public Tariff() { }
 
         public Tariff(JSONTariff jsonTariffs)
         {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolarPanels.Core.JSON
+namespace SolarPanels.Core.Data.JSON
 {
-    public class JSONTariff
+    public class JSONTariff : BaseJSONData
     {
         public string Name { get; set; }
         public string Expiry { get; set; }

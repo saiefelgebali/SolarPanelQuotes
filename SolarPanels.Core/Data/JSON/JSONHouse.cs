@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolarPanels.Core.JSON
+namespace SolarPanels.Core.Data.JSON
 {
-    public class JSONHouse
+    public class JSONHouse : BaseJSONData
     {
         public string Id { get; set; }
         public string RoofSize { get; set; }

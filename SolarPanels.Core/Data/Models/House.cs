@@ -1,11 +1,11 @@
-﻿using SolarPanels.Core.JSON;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SolarPanels.Core.Data.JSON;
 
-namespace SolarPanels.Core.Models
+namespace SolarPanels.Core.Data.Models
 {
     public class House
     {
@@ -13,6 +13,8 @@ namespace SolarPanels.Core.Models
         public readonly double DaylightElectricityConsumption;
         public readonly double ElectricityCost;
         public readonly (double, double) RoofSize;
+
+        public House() { }
 
         public House(JSONHouse jsonHouse)
         {

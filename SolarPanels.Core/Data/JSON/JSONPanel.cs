@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SolarPanels.Core.JSON
+namespace SolarPanels.Core.Data.JSON
 {
-    public class JSONPanel
+    public class JSONPanel : BaseJSONData
     {
         public string Manufacturer { get; set; }
         public string Model { get; set; }
@@ -11,6 +11,6 @@ namespace SolarPanels.Core.JSON
         public string Efficiency { get; set; }
         public string Weight { get; set; }
         public string Cost { get; set; }
-        public string Url { get; set;  }
+        public string Url { get; set; }
     }
 }

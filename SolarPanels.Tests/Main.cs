@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Text.Json;
-using SolarPanels.Core.Data;
+using SolarPanels.Core;
 
 namespace SolarPanels.Tests
 {

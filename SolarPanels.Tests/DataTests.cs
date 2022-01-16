@@ -1,21 +1,24 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolarPanels.Core.Data;
+using SolarPanels.Core;
+using System.IO;
 
 namespace SolarPanels.Tests
 {
     [TestClass]
     public class DataTests
     {
+        static readonly string DataPath = "D:/datasets/SolarPanels";
+        static readonly string DaylightPath = Path.Combine(DataPath, "Daylight.json");
+        static readonly string HousesPath = Path.Combine(DataPath, "Houses.json");
+        static readonly string InstallersPath = Path.Combine(DataPath, "Installers.json");
+        static readonly string PanelsPath = Path.Combine(DataPath, "Panels.json");
+        static readonly string TariffsPath = Path.Combine(DataPath, "Tariffs.json");
+
         [TestMethod]
         public void ParseDaylights()
         {
-            var daylightsPath = @"D:/datasets/SolarPanels/Daylight.json";
-            var daylights = new Daylights(daylightsPath);
+            var daylights = Datasets.DaylightDataset(DaylightPath);
 
             Assert.IsNotNull(daylights);
             Assert.IsNotNull(daylights.Data);
@@ -30,8 +33,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseHouses()
         {
-            var housesPath = @"D:/datasets/SolarPanels/Houses.json";
-            var houses = new Houses(housesPath);
+            var houses = Datasets.HouseDataset(HousesPath);
 
             Assert.IsNotNull(houses);
             Assert.IsNotNull(houses.Data);
@@ -48,8 +50,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseInstallers()
         {
-            var installersPath = @"D:/datasets/SolarPanels/Installers.json";
-            var installers = new Installers(installersPath);
+            var installers = Datasets.InstallerDataset(InstallersPath);
 
             Assert.IsNotNull(installers);
             Assert.IsNotNull(installers.Data);
@@ -65,8 +66,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParsePanels()
         {
-            var panelsPath = @"D:/datasets/SolarPanels/Panels.json";
-            var panels = new Panels(panelsPath);
+            var panels = Datasets.PanelDataset(PanelsPath);
 
             Assert.IsNotNull(panels);
             Assert.IsNotNull(panels.Data);
@@ -87,8 +87,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseTariffs()
         {
-            var tariffsPath = @"D:/datasets/SolarPanels/Tariffs.json";
-            var tariffs = new Tariffs(tariffsPath);
+            var tariffs = Datasets.TariffDataset(TariffsPath);
 
             Assert.IsNotNull(tariffs);
             Assert.IsNotNull(tariffs.Data);
@@ -103,7 +102,5 @@ namespace SolarPanels.Tests
             Assert.IsInstanceOfType(sample.MaximumFeedAmount, typeof(double?));
             Assert.IsInstanceOfType(sample.Expiry, typeof(DateTime));
         }
-
-        
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SolarPanels.Core.JSON;
+using SolarPanels.Core.Data.JSON;
 
-namespace SolarPanels.Core.Models
+namespace SolarPanels.Core.Data.Models
 {
     public class Panel
     {
@@ -17,6 +17,8 @@ namespace SolarPanels.Core.Models
         public readonly double Weight;
         public readonly double Cost;
         public readonly (double, double) Size;
+
+        public Panel() { }
 
         public Panel(JSONPanel jsonPanel)
         {
