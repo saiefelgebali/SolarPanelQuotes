@@ -16,6 +16,12 @@ namespace SolarPanels.Core.Algorithms
 
         private double Budget = double.PositiveInfinity;
 
+        public PanelFitter((double, double)? roofSize = null, double? budget = null)
+        {
+            if (budget != null) Budget = (double)budget;
+            if (roofSize != null) RoofSize = ((double, double))roofSize;
+        }
+
         public void SetRoofSize(double length, double width) => RoofSize = (length, width);
         public void SetBudget(double budget) => Budget = budget;
 

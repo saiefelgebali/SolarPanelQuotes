@@ -39,8 +39,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void FitPanelsByCost()
         {
-            var panelFitter = new PanelFitter();
-            panelFitter.SetRoofSize(5, 4);
+            var panelFitter = new PanelFitter(roofSize: (5, 4));
             panelFitter.FitPanels(Panels);
             var fittings = panelFitter.SortByCost();
 
@@ -58,10 +57,8 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void FitPanelsWithBudget()
         {
-            var panelFitter = new PanelFitter();
-            panelFitter.SetRoofSize(5, 4);
+            var panelFitter = new PanelFitter(roofSize: (5, 4), budget: 1000);
             panelFitter.FitPanels(Panels);
-            panelFitter.SetBudget(1000);
             var fittings = panelFitter.GetFittedPanels();
 
             Assert.IsTrue(fittings.Length < Panels.Length);
