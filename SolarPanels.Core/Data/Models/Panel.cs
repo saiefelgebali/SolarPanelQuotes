@@ -16,22 +16,24 @@ namespace SolarPanels.Core.Data.Models
         public readonly double Efficiency;
         public readonly double Weight;
         public readonly double Cost;
+        public readonly double UsefulPower;
         public readonly (double Length, double Width) Size;
 
         public Panel() { }
 
         public Panel(JSONPanel jsonPanel)
         {
-            // Strings
             Manufacturer = jsonPanel.Manufacturer;
             Model = jsonPanel.Model;
             Url = jsonPanel.Url;
 
-            // Parse doubles
             Power = Convert.ToDouble(jsonPanel.Power);
-            Efficiency = Convert.ToDouble(jsonPanel.Efficiency);
+            Efficiency = Convert.ToDouble(jsonPanel.Efficiency) / 100;
             Weight = Convert.ToDouble(jsonPanel.Weight);
             Cost = Convert.ToDouble(jsonPanel.Cost);
+
+            // Calculate the useful power based on efficiency
+            UsefulPower = Power * Efficiency;
 
             // Convert 'Size' tuple to 'Length' and 'Width' properties
             var size = jsonPanel.Size.Split(',');

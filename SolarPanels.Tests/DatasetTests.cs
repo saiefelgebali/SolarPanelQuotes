@@ -8,17 +8,10 @@ namespace SolarPanels.Tests
     [TestClass]
     public class DatasetTests
     {
-        static readonly string DataPath = "D:/datasets/SolarPanels";
-        static readonly string DaylightPath = Path.Combine(DataPath, "Daylight.json");
-        static readonly string HousesPath = Path.Combine(DataPath, "Houses.json");
-        static readonly string InstallersPath = Path.Combine(DataPath, "Installers.json");
-        static readonly string PanelsPath = Path.Combine(DataPath, "Panels.json");
-        static readonly string TariffsPath = Path.Combine(DataPath, "Tariffs.json");
-
         [TestMethod]
         public void ParseDaylights()
         {
-            var daylights = new DaylightDataset(DaylightPath);
+            var daylights = TestUtility.DaylightDataset;
 
             Assert.IsNotNull(daylights);
             Assert.IsNotNull(daylights.Data);
@@ -33,7 +26,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseHouses()
         {
-            var houses = new HouseDataset(HousesPath);
+            var houses = TestUtility.HouseDataset;
 
             Assert.IsNotNull(houses);
             Assert.IsNotNull(houses.Data);
@@ -50,7 +43,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseInstallers()
         {
-            var installers = new InstallerDataset(InstallersPath);
+            var installers = TestUtility.InstallerDataset;
 
             Assert.IsNotNull(installers);
             Assert.IsNotNull(installers.Data);
@@ -66,7 +59,7 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParsePanels()
         {
-            var panels = new PanelDataset(PanelsPath);
+            var panels = TestUtility.PanelDataset;
 
             Assert.IsNotNull(panels);
             Assert.IsNotNull(panels.Data);
@@ -81,13 +74,16 @@ namespace SolarPanels.Tests
             Assert.IsInstanceOfType(sample.Efficiency, typeof(double));
             Assert.IsInstanceOfType(sample.Weight, typeof(double));
             Assert.IsInstanceOfType(sample.Cost, typeof(double));
+            Assert.IsInstanceOfType(sample.UsefulPower, typeof(double));
             Assert.IsInstanceOfType(sample.Size, typeof((double, double)));
+
+            Assert.AreEqual(sample.UsefulPower, sample.Power * sample.Efficiency);
         }
         
         [TestMethod]
         public void ParseTariffs()
         {
-            var tariffs = new TariffDataset(TariffsPath);
+            var tariffs = TestUtility.TariffDataset;
 
             Assert.IsNotNull(tariffs);
             Assert.IsNotNull(tariffs.Data);
