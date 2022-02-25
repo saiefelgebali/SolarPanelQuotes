@@ -24,6 +24,7 @@ namespace SolarPanels.Tests
             panelFitter.FitPanels(Panels);
             var fittings = panelFitter.GetFittedPanels();
 
+            // Test each fitting
             Assert.AreEqual(fittings.Length, Panels.Length);
             foreach (var fitting in fittings)
             {
@@ -33,7 +34,39 @@ namespace SolarPanels.Tests
                 Assert.IsInstanceOfType(fitting.TotalPower, typeof(double));
                 Assert.IsInstanceOfType(fitting.TotalEfficiency, typeof(double));
                 Assert.IsInstanceOfType(fitting.TotalUsefulPower, typeof(double));
+
+                switch (fitting.Panel.Manufacturer)
+                {
+                    case "Solaria":
+                        Assert.AreEqual(fitting.Count, 9);
+                        break;
+
+                    case "Solar Power Supply":
+                        Assert.AreEqual(fitting.Count, 28);
+                        break;
+
+                    case "Trina":
+                        Assert.AreEqual(fitting.Count, 8);
+                        break;
+
+                    case "Viridian":
+                        Assert.AreEqual(fitting.Count, 12);
+                        break;
+
+                    case "Q Cells":
+                        Assert.AreEqual(fitting.Count, 8);
+                        break;
+
+                    case "LG":
+                        Assert.AreEqual(fitting.Count, 8);
+                        break;
+
+                    default:
+                        break;
+                }
             }
+
+
         }
 
         [TestMethod]

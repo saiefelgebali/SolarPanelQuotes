@@ -13,7 +13,8 @@ namespace SolarPanels.Tests
 {
     internal static class TestUtility
     {
-        static readonly string DataPath = "D:/datasets/SolarPanels";
+        static readonly string HomePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        static readonly string DataPath = $"{HomePath}/source/repos/saiefelgebali/SolarPanels/data";
 
         static readonly string DaylightPath = Path.Combine(DataPath, "Daylight.json");
         static readonly string HousePath = Path.Combine(DataPath, "Houses.json");

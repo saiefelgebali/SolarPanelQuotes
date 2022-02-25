@@ -12,13 +12,18 @@ namespace SolarPanels.Core.Algorithms
     {
         private double Budget { get; set; }
 
-        public InstallerFitter(double? budget)
+        public InstallerFitter(double? budget = double.PositiveInfinity)
         {
             if (budget != null) Budget = (double)budget;
         }
 
         public FittedInstaller[] FitInstallers(Installer[] installers, int panelCount)
         {
+            if (panelCount < 0)
+            {
+                //throw new ArgumentException("panelCount must be greater than 0");
+                return null;
+            }
             FittedInstaller[] FittedInstallers = new FittedInstaller[installers.Length];
 
             for (int i = 0; i < installers.Length; i++)

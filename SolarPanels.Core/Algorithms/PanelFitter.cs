@@ -28,15 +28,26 @@ namespace SolarPanels.Core.Algorithms
         public void FitPanels(Panel[] panels)
         {
             FittedPanels = new FittedPanel[panels.Length];
-
+  
             for (int i = 0; i < panels.Length; i++)
             {
+                // Fit panels in normal orientation
                 var panel = panels[i];
-                var lengthCount = RoofSize.Length / panel.Size.Length;
-                var widthCount = RoofSize.Width / panel.Size.Width;
-                var count = Convert.ToInt32(
-                    Math.Floor(lengthCount) * Math.Floor(widthCount)
+                var lengthCountNormal = RoofSize.Length / panel.Size.Length;
+                var widthCountNormal = RoofSize.Width / panel.Size.Width;
+                var countNormal = Convert.ToInt32(
+                    Math.Floor(lengthCountNormal) * Math.Floor(widthCountNormal)
                     );
+
+                // Fit panels in rotated orientation
+                var lengthCountRotated = RoofSize.Length / panel.Size.Width;
+                var widthCountRotated = RoofSize.Width / panel.Size.Length;
+                var countRotated = Convert.ToInt32(
+                    Math.Floor(lengthCountRotated) * Math.Floor(widthCountRotated)
+                    );
+
+                // Use greater count
+                var count = Math.Max(countNormal, countRotated);
                 FittedPanels[i] = new FittedPanel(panel, count);
             }
         }
