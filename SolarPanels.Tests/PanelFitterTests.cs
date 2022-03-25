@@ -15,13 +15,14 @@ namespace SolarPanels.Tests
     public class PanelFitterTests
     {
         static readonly Panel[] Panels = TestUtility.PanelDataset.Data;
+        static readonly Daylight[] Daylights = TestUtility.DaylightDataset.Data;
 
         [TestMethod]
         public void FitPanelsToRoof()
         {
-            var panelFitter = new PanelFitter();
+            var panelFitter = new PanelFitter(Daylights);
             panelFitter.SetRoofSize(5, 4);
-            panelFitter.FitPanels(Panels);
+            panelFitter.FitPanels(Panels, 0);
             var fittings = panelFitter.GetFittedPanels();
 
             // Test each fitting
@@ -72,8 +73,8 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void FitPanelsByCost()
         {
-            var panelFitter = new PanelFitter(roofSize: (5, 4));
-            panelFitter.FitPanels(Panels);
+            var panelFitter = new PanelFitter(Daylights, roofSize: (5, 4));
+            panelFitter.FitPanels(Panels, 0);
             var fittings = panelFitter.SortByCost();
 
             Assert.AreEqual(fittings.Length, Panels.Length);
@@ -90,8 +91,8 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void FitPanelsWithBudget()
         {
-            var panelFitter = new PanelFitter(roofSize: (5, 4), budget: 1000);
-            panelFitter.FitPanels(Panels);
+            var panelFitter = new PanelFitter(Daylights, roofSize: (5, 4), budget: 1000);
+            panelFitter.FitPanels(Panels, 0);
             var fittings = panelFitter.GetFittedPanels();
 
             Assert.IsTrue(fittings.Length < Panels.Length);

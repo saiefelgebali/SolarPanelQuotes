@@ -16,16 +16,25 @@ namespace SolarPanels.Core.Algorithms
 
         private double Budget = double.PositiveInfinity;
 
-        public PanelFitter((double, double)? roofSize = null, double? budget = null)
+        private double AverageDaylight;
+
+        public PanelFitter(Daylight[] daylights, (double, double)? roofSize = null, double? budget = null)
         {
             if (budget != null) Budget = (double)budget;
             if (roofSize != null) RoofSize = ((double, double))roofSize;
+
+            double sumDaylight = 0;
+            foreach (var daylight in daylights)
+            {
+                sumDaylight += daylight.HoursOfDaylightPerDay;
+            }
+            AverageDaylight = sumDaylight / daylights.Length;
         }
 
         public void SetRoofSize(double length, double width) => RoofSize = (length, width);
         public void SetBudget(double budget) => Budget = budget;
 
-        public void FitPanels(Panel[] panels)
+        public void FitPanels(Panel[] panels, double averageDaylightConsumption)
         {
             FittedPanels = new FittedPanel[panels.Length];
   
@@ -48,7 +57,7 @@ namespace SolarPanels.Core.Algorithms
 
                 // Use greater count
                 var count = Math.Max(countNormal, countRotated);
-                FittedPanels[i] = new FittedPanel(panel, count);
+                FittedPanels[i] = new FittedPanel(panel, count, AverageDaylight, averageDaylightConsumption);
             }
         }
 

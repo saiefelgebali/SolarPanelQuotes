@@ -9,15 +9,15 @@ namespace SolarPanels.Core.Data.Models
 {
     public class Panel
     {
-        public readonly string Manufacturer;
-        public readonly string Model;
-        public readonly string Url;
-        public readonly double Power;
-        public readonly double Efficiency;
-        public readonly double Weight;
-        public readonly double Cost;
-        public readonly double UsefulPower;
-        public readonly (double Length, double Width) Size;
+        public string Manufacturer;
+        public string Model  { get; private set; }
+        public string Url  { get; private set; }
+        public double Power  { get; private set; }
+        public double Efficiency  { get; private set; }
+        public double Weight  { get; private set; }
+        public double Cost  { get; private set; }
+        public double UsefulPower  { get; private set; }
+        public (double Length, double Width) Size { get; private set; }
 
         public Panel() { }
 

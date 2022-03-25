@@ -9,12 +9,12 @@ namespace SolarPanels.Core.Data.Models
 {
     public class Tariff
     {
-        public readonly string Name;
-        public readonly double Price;
-        public readonly double ExpiredPrice;
-        public readonly double MinimumFeedAmount;
-        public readonly double MaximumFeedAmount;
-        public readonly DateTime Expiry;
+        public string Name { get; private set; }
+        public double Price  { get; private set; }
+        public double ExpiredPrice  { get; private set; }
+        public double MinimumFeedAmount  { get; private set; }
+        public double MaximumFeedAmount  { get; private set; }
+        public DateTime Expiry  { get; private set; }
 
         public Tariff() { }
 
