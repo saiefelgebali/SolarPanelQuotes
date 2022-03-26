@@ -21,15 +21,15 @@ namespace SolarPanels.Core.Algorithms
             {
                 // Fit panels in normal orientation
                 var panel = Panels[i];
-                var lengthCountNormal = roofSize.length / panel.Size.Length;
-                var widthCountNormal = roofSize.width / panel.Size.Width;
+                var lengthCountNormal = roofSize.length / panel.Length;
+                var widthCountNormal = roofSize.width / panel.Width;
                 var countNormal = Convert.ToInt32(
                     Math.Floor(lengthCountNormal) * Math.Floor(widthCountNormal)
                     );
 
                 // Fit panels in rotated orientation
-                var lengthCountRotated = roofSize.length / panel.Size.Width;
-                var widthCountRotated = roofSize.width / panel.Size.Length;
+                var lengthCountRotated = roofSize.length / panel.Width;
+                var widthCountRotated = roofSize.width / panel.Length;
                 var countRotated = Convert.ToInt32(
                     Math.Floor(lengthCountRotated) * Math.Floor(widthCountRotated)
                     );
@@ -41,25 +41,5 @@ namespace SolarPanels.Core.Algorithms
 
             return fittedPanels;
         }
-
-        //public static FittedPanel[] FilterPanels(FittedPanel[] fitted, double? budget) =>
-        //    fitted
-        //    .Where(p => p.TotalCost < budget)
-        //    .ToArray();
-
-        //public FittedPanel[] SortByCost() =>
-        //    GetFittedPanels()
-        //    .OrderBy(p => p.TotalCost)
-        //    .ToArray();
-
-        //public FittedPanel[] SortByPower() => 
-        //    GetFittedPanels()
-        //    .OrderBy(p => p.TotalPower)
-        //    .ToArray();        
-
-        //public FittedPanel[] SortByUsefulPower() => 
-        //    GetFittedPanels()
-        //    .OrderBy(p => p.TotalUsefulPower)
-        //    .ToArray();
     }
 }

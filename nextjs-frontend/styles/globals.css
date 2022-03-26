@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+	@apply w-full
+    px-3 py-2 rounded
+    outline-none 
+    border border-gray-300 hover:border-gray-500 focus:border-purple-900
+    transition-colors duration-150;
+}
+
+label {
+	@apply block font-semibold;
+}
+
+.input-group {
+	@apply flex gap-4;
+}
+.input-group > div {
+	@apply flex-1;
+}

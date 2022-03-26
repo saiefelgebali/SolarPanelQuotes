@@ -32,7 +32,7 @@ namespace SolarPanels.Core.Algorithms.Models
             // Calculate time to break even
             AverageDailyProfit = AverageProfits.Average();
             if (AverageDailyProfit > 0) DaysToBreakEven = TotalPrice / AverageDailyProfit;
-            else if (AverageDailyProfit <= 0) DaysToBreakEven = double.PositiveInfinity;
+            else if (AverageDailyProfit <= 0) DaysToBreakEven = -1;
         }
     }
 }

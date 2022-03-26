@@ -1,5 +1,6 @@
 ﻿using SolarPanels.Core.Data.JSON;
 using System;
+using System.Linq;
 
 namespace SolarPanels.Core.Data.Models
 {
@@ -13,7 +14,8 @@ namespace SolarPanels.Core.Data.Models
         public double Weight { get; private set; }
         public double Cost { get; private set; }
         public double UsefulPower { get; private set; }
-        public (double Length, double Width) Size { get; private set; }
+        public double Length { get; private set; }
+        public double Width { get; private set; }
 
         public Panel() { }
 
@@ -35,7 +37,8 @@ namespace SolarPanels.Core.Data.Models
             var size = jsonPanel.Size.Split(',');
             var length = Convert.ToDouble(size[0]);
             var width = Convert.ToDouble(size[1]);
-            Size = (length, width);
+            Length = length;
+            Width = width;
         }
     }
 }

@@ -4,8 +4,8 @@ namespace SolarPanels.Core.Algorithms.Models
 {
     public class FittedInstaller
     {
-        public readonly Installer Installer;
-        public readonly double TotalPrice;
+        public Installer Installer { get; private set; }
+        public double TotalPrice { get; private set; }
 
         public FittedInstaller(Installer installer, double totalPrice)
         {

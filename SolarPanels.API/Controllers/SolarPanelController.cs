@@ -11,7 +11,9 @@ namespace SolarPanels.API.Controllers
         [HttpPost]
         public IEnumerable<EstimatedQuote> GetEstimatedQuotes(HouseSpecifications specs)
         {
-            return QuoteEstimator.GetQuotes(specs);
+            var quotes = QuoteEstimator.GetQuotes(specs);
+
+            return quotes;
         }
     }
 }
