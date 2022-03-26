@@ -11,6 +11,8 @@ namespace SolarPanels.Core.Algorithms.Models
     {
         public Tariff Tariff{ get; private set; }
 
+        public double AverageConsumption { get; private set; }
+
         public double[] AverageFeedAmounts { get; private set; }
 
         public double[] AverageRevenues { get; private set; }
@@ -20,6 +22,7 @@ namespace SolarPanels.Core.Algorithms.Models
         public FittedTariff(FittedPanels fitting, Tariff tarrif, double averageConsumption)
         {
             Tariff = tarrif;
+            AverageConsumption = averageConsumption;
 
             // Get average feed amounts over each month
             AverageFeedAmounts = fitting.AverageOutputs.Select(                

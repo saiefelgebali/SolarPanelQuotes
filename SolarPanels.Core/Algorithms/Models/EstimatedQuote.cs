@@ -14,9 +14,13 @@ namespace SolarPanels.Core.Algorithms.Models
 
         public double TotalPrice { get; private set; }
 
-        public double AverageProfits { get; private set; }
+        public double[] AverageProfits { get; private set; }
 
-        public EstimatedQuote(FittedPanels panels, FittedInstaller installer, FittedTariff tariff)
+        public double AverageDailyProfit { get; private set; }
+
+        public double DaysToBreakEven { get; private set; }
+
+        public EstimatedQuote(FittedPanels panels, FittedInstaller installer, FittedTariff tariff, double electricityCost)
         {
             Panels = panels;
             Installer = installer;
@@ -24,6 +28,15 @@ namespace SolarPanels.Core.Algorithms.Models
 
             // Calculate total quote price
             TotalPrice = Panels.TotalCost + Installer.TotalPrice;
+
+            // Calculate average profits over each month
+            var averageCost = Tariff.AverageConsumption * electricityCost;
+            AverageProfits = tariff.AverageRevenues.Select(revenue => revenue - averageCost).ToArray();
+
+            // Calculate time to break even
+            AverageDailyProfit = AverageProfits.Average();
+            if (AverageDailyProfit > 0) DaysToBreakEven = TotalPrice / AverageDailyProfit;
+            else if (AverageDailyProfit <= 0) DaysToBreakEven = double.PositiveInfinity;
         }
     }
 }

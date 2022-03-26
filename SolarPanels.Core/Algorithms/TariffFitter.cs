@@ -26,7 +26,7 @@ namespace SolarPanels.Core.Algorithms
             {
                 var tariffFitting = new FittedTariff(fitting, tariff, averageConsumption);
 
-                if (tariffFitting.AverageFeedAmounts.Min() > tariff.MinimumFeedAmount)
+                if (tariffFitting.AverageFeedAmounts.Min() >= tariff.MinimumFeedAmount)
                 {
                     tarifFittings.Add(new FittedTariff(fitting, tariff, averageConsumption));
                 }
