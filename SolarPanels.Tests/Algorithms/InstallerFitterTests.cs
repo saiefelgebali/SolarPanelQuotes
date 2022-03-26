@@ -1,18 +1,19 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using SolarPanels.Core.Algorithms;
 using SolarPanels.Core.Data.Models;
+using SolarPanels.Core;
 
-namespace SolarPanels.Tests
+namespace SolarPanels.Algorithms.Tests
 {
     [TestClass]
     public class InstallerFitterTests
     {
-        static readonly Installer[] Installers = TestUtility.InstallerDataset.Data;
-
         [TestMethod]
         public void FitInstallers()
         {
             var installerFitter = new InstallerFitter();
+
             var panelCounts = new int[] { 0, 15, 100, -6 };
 
             var expectedPrices = new double[,]
@@ -24,14 +25,22 @@ namespace SolarPanels.Tests
 
             for (int i = 0; i < panelCounts.Length; i++)
             {
-                var fittings = installerFitter.FitInstallers(Installers, panelCounts[i]);
-
+                // handle expected exception
                 if (panelCounts[i] < 0)
                 {
-                    Assert.IsNull(fittings);
+                    try
+                    {
+                        installerFitter.FitInstallers(panelCounts[i]);
+                        Assert.Fail();
+                    } 
+                    catch (ArgumentException ex)
+                    {
+                        Assert.IsInstanceOfType(ex, typeof (ArgumentException));
+                    }
                     continue;
                 }
 
+                var fittings = installerFitter.FitInstallers(panelCounts[i]);
 
                 foreach (var fitting in fittings)
                 {

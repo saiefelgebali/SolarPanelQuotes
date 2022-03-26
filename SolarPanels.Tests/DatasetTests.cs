@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using SolarPanels.Core;
-using System.IO;
+using System;
 
 namespace SolarPanels.Tests
 {
@@ -11,13 +10,10 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseDaylights()
         {
-            var daylights = TestUtility.DaylightDataset;
+            Assert.IsNotNull(DaylightDataset.Data);
+            Assert.IsTrue(DaylightDataset.Data.Length > 0);
 
-            Assert.IsNotNull(daylights);
-            Assert.IsNotNull(daylights.Data);
-            Assert.IsTrue(daylights.Data.Length > 0);
-
-            var sample = daylights.Data[0];
+            var sample = DaylightDataset.Data[0];
 
             Assert.IsInstanceOfType(sample.Month, typeof(int));
             Assert.IsInstanceOfType(sample.HoursOfDaylightPerDay, typeof(double));
@@ -26,13 +22,10 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseHouses()
         {
-            var houses = TestUtility.HouseDataset;
+            Assert.IsNotNull(HouseDataset.Data);
+            Assert.IsTrue(HouseDataset.Data.Length > 0);
 
-            Assert.IsNotNull(houses);
-            Assert.IsNotNull(houses.Data);
-            Assert.IsTrue(houses.Data.Length > 0);
-
-            var sample = houses.Data[0];
+            var sample = HouseDataset.Data[0];
 
             Assert.IsInstanceOfType(sample.Id, typeof(string));
             Assert.IsInstanceOfType(sample.DaylightElectricityConsumption, typeof(double));
@@ -43,13 +36,10 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseInstallers()
         {
-            var installers = TestUtility.InstallerDataset;
+            Assert.IsNotNull(InstallerDataset.Data);
+            Assert.IsTrue(InstallerDataset.Data.Length > 0);
 
-            Assert.IsNotNull(installers);
-            Assert.IsNotNull(installers.Data);
-            Assert.IsTrue(installers.Data.Length > 0);
-
-            var sample = installers.Data[0];
+            var sample = InstallerDataset.Data[0];
 
             Assert.IsInstanceOfType(sample.Id, typeof(string));
             Assert.IsInstanceOfType(sample.CallOutCost, typeof(double));
@@ -59,13 +49,10 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParsePanels()
         {
-            var panels = TestUtility.PanelDataset;
+            Assert.IsNotNull(PanelDataset.Data);
+            Assert.IsTrue(PanelDataset.Data.Length > 0);
 
-            Assert.IsNotNull(panels);
-            Assert.IsNotNull(panels.Data);
-            Assert.IsTrue(panels.Data.Length > 0);
-
-            var sample = panels.Data[0];
+            var sample = PanelDataset.Data[0];
 
             Assert.IsInstanceOfType(sample.Manufacturer, typeof(string));
             Assert.IsInstanceOfType(sample.Model, typeof(string));
@@ -83,13 +70,10 @@ namespace SolarPanels.Tests
         [TestMethod]
         public void ParseTariffs()
         {
-            var tariffs = TestUtility.TariffDataset;
+            Assert.IsNotNull(TariffDataset.Data);
+            Assert.IsTrue(TariffDataset.Data.Length > 0);
 
-            Assert.IsNotNull(tariffs);
-            Assert.IsNotNull(tariffs.Data);
-            Assert.IsTrue(tariffs.Data.Length > 0);
-
-            var sample = tariffs.Data[0];
+            var sample = TariffDataset.Data[0];
 
             Assert.IsInstanceOfType(sample.Name, typeof(string));
             Assert.IsInstanceOfType(sample.Price, typeof(double));

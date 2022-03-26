@@ -1,84 +1,65 @@
 ﻿using SolarPanels.Core.Algorithms.Models;
 using SolarPanels.Core.Data.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolarPanels.Core.Algorithms
 {
     public class PanelFitter
     {
-        private FittedPanel[] FittedPanels;
+        private readonly Panel[] Panels;
 
-        private (double Length, double Width) RoofSize = (0, 0);
-
-        private double Budget = double.PositiveInfinity;
-
-        private double AverageDaylight;
-
-        public PanelFitter(Daylight[] daylights, (double, double)? roofSize = null, double? budget = null)
+        public PanelFitter()
         {
-            if (budget != null) Budget = (double)budget;
-            if (roofSize != null) RoofSize = ((double, double))roofSize;
-
-            double sumDaylight = 0;
-            foreach (var daylight in daylights)
-            {
-                sumDaylight += daylight.HoursOfDaylightPerDay;
-            }
-            AverageDaylight = sumDaylight / daylights.Length;
+            Panels = PanelDataset.Data;
         }
 
-        public void SetRoofSize(double length, double width) => RoofSize = (length, width);
-        public void SetBudget(double budget) => Budget = budget;
-
-        public void FitPanels(Panel[] panels, double averageDaylightConsumption)
+        public FittedPanels[] FitPanels((double length, double width) roofSize)
         {
-            FittedPanels = new FittedPanel[panels.Length];
-  
-            for (int i = 0; i < panels.Length; i++)
+            var fittedPanels = new FittedPanels[Panels.Length];
+
+            for (int i = 0; i < Panels.Length; i++)
             {
                 // Fit panels in normal orientation
-                var panel = panels[i];
-                var lengthCountNormal = RoofSize.Length / panel.Size.Length;
-                var widthCountNormal = RoofSize.Width / panel.Size.Width;
+                var panel = Panels[i];
+                var lengthCountNormal = roofSize.length / panel.Size.Length;
+                var widthCountNormal = roofSize.width / panel.Size.Width;
                 var countNormal = Convert.ToInt32(
                     Math.Floor(lengthCountNormal) * Math.Floor(widthCountNormal)
                     );
 
                 // Fit panels in rotated orientation
-                var lengthCountRotated = RoofSize.Length / panel.Size.Width;
-                var widthCountRotated = RoofSize.Width / panel.Size.Length;
+                var lengthCountRotated = roofSize.length / panel.Size.Width;
+                var widthCountRotated = roofSize.width / panel.Size.Length;
                 var countRotated = Convert.ToInt32(
                     Math.Floor(lengthCountRotated) * Math.Floor(widthCountRotated)
                     );
 
                 // Use greater count
                 var count = Math.Max(countNormal, countRotated);
-                FittedPanels[i] = new FittedPanel(panel, count, AverageDaylight, averageDaylightConsumption);
+                fittedPanels[i] = new FittedPanels(panel, count);
             }
+
+            return fittedPanels;
         }
 
-        public FittedPanel[] GetFittedPanels() =>
-            FittedPanels
-            .Where(p => p.TotalCost < Budget)
-            .ToArray();
+        //public static FittedPanel[] FilterPanels(FittedPanel[] fitted, double? budget) =>
+        //    fitted
+        //    .Where(p => p.TotalCost < budget)
+        //    .ToArray();
 
-        public FittedPanel[] SortByCost() =>
-            GetFittedPanels()
-            .OrderBy(p => p.TotalCost)
-            .ToArray();
+        //public FittedPanel[] SortByCost() =>
+        //    GetFittedPanels()
+        //    .OrderBy(p => p.TotalCost)
+        //    .ToArray();
 
-        public FittedPanel[] SortByPower() => 
-            GetFittedPanels()
-            .OrderBy(p => p.TotalPower)
-            .ToArray();        
+        //public FittedPanel[] SortByPower() => 
+        //    GetFittedPanels()
+        //    .OrderBy(p => p.TotalPower)
+        //    .ToArray();        
         
-        public FittedPanel[] SortByUsefulPower() => 
-            GetFittedPanels()
-            .OrderBy(p => p.TotalUsefulPower)
-            .ToArray();
+        //public FittedPanel[] SortByUsefulPower() => 
+        //    GetFittedPanels()
+        //    .OrderBy(p => p.TotalUsefulPower)
+        //    .ToArray();
     }
 }

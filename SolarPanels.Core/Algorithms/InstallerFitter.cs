@@ -1,43 +1,39 @@
 ﻿using SolarPanels.Core.Algorithms.Models;
 using SolarPanels.Core.Data.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolarPanels.Core.Algorithms
 {
     public class InstallerFitter
     {
-        private double Budget { get; set; }
+        private readonly Installer[] Installers;
 
-        public InstallerFitter(double? budget = double.PositiveInfinity)
+        public InstallerFitter()
         {
-            if (budget != null) Budget = (double)budget;
+            Installers = InstallerDataset.Data;
         }
 
-        public FittedInstaller[] FitInstallers(Installer[] installers, int panelCount)
+        public FittedInstaller[] FitInstallers(int panelCount)
         {
             if (panelCount < 0)
             {
-                //throw new ArgumentException("panelCount must be greater than 0");
-                return null;
+                throw new ArgumentException("panelCount must be greater than 0");
             }
-            FittedInstaller[] FittedInstallers = new FittedInstaller[installers.Length];
 
-            for (int i = 0; i < installers.Length; i++)
+            FittedInstaller[] fittedInstallers = new FittedInstaller[Installers.Length];
+
+            for (int i = 0; i < Installers.Length; i++)
             {
-                var installer = installers[i];
+                var installer = Installers[i];
 
                 var totalPrice = 
                     installer.CallOutCost + 
                     (installer.CostPerPanel * panelCount);
 
-                FittedInstallers[i] = new FittedInstaller(installer, totalPrice);
+                fittedInstallers[i] = new FittedInstaller(installer, totalPrice);
             }
 
-            return FittedInstallers;
+            return fittedInstallers;
         }
     }
 }

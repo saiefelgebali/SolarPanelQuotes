@@ -9,32 +9,29 @@ using SolarPanels.Core;
 using SolarPanels.Core.Data.Models;
 using SolarPanels.Core.Algorithms;
 
-namespace SolarPanels.Tests
+namespace SolarPanels.Algorithms.Tests
 {
     [TestClass]
     public class PanelFitterTests
     {
-        static readonly Panel[] Panels = TestUtility.PanelDataset.Data;
-        static readonly Daylight[] Daylights = TestUtility.DaylightDataset.Data;
-
         [TestMethod]
         public void FitPanelsToRoof()
         {
-            var panelFitter = new PanelFitter(Daylights);
-            panelFitter.SetRoofSize(5, 4);
-            panelFitter.FitPanels(Panels, 0);
-            var fittings = panelFitter.GetFittedPanels();
+            var panelFitter = new PanelFitter();
+            var fittings = panelFitter.FitPanels((5, 4));
 
             // Test each fitting
-            Assert.AreEqual(fittings.Length, Panels.Length);
             foreach (var fitting in fittings)
             {
                 Assert.IsInstanceOfType(fitting.Panel, typeof(Panel));
                 Assert.IsInstanceOfType(fitting.Count, typeof(int));
                 Assert.IsInstanceOfType(fitting.TotalCost, typeof(double));
                 Assert.IsInstanceOfType(fitting.TotalPower, typeof(double));
-                Assert.IsInstanceOfType(fitting.TotalEfficiency, typeof(double));
                 Assert.IsInstanceOfType(fitting.TotalUsefulPower, typeof(double));
+                Assert.IsInstanceOfType(fitting.AverageOutputs, typeof(double[]));
+
+                // Ensure AverageOutputs have 12 values for each month of the year
+                Assert.AreEqual(fitting.AverageOutputs.Length, 12);
 
                 switch (fitting.Panel.Manufacturer)
                 {
@@ -70,32 +67,31 @@ namespace SolarPanels.Tests
 
         }
 
-        [TestMethod]
-        public void FitPanelsByCost()
-        {
-            var panelFitter = new PanelFitter(Daylights, roofSize: (5, 4));
-            panelFitter.FitPanels(Panels, 0);
-            var fittings = panelFitter.SortByCost();
+        //[TestMethod]
+        //public void FitPanelsByCost()
+        //{
+        //    panelFitter.FitPanels(Panels, roofSize: (5,4));
+        //    var fittings = panelFitter.SortByCost();
 
-            Assert.AreEqual(fittings.Length, Panels.Length);
+        //    Assert.AreEqual(fittings.Length, Panels.Length);
 
-            double min = double.PositiveInfinity;
-            foreach (var fitting in fittings)
-            {
-                var curr = fitting.TotalCost;
-                if (curr < min) min = curr;
-            }
-            Assert.AreEqual(min, fittings[0].TotalCost);
-        }
+        //    double min = double.PositiveInfinity;
+        //    foreach (var fitting in fittings)
+        //    {
+        //        var curr = fitting.TotalCost;
+        //        if (curr < min) min = curr;
+        //    }
+        //    Assert.AreEqual(min, fittings[0].TotalCost);
+        //}
 
-        [TestMethod]
-        public void FitPanelsWithBudget()
-        {
-            var panelFitter = new PanelFitter(Daylights, roofSize: (5, 4), budget: 1000);
-            panelFitter.FitPanels(Panels, 0);
-            var fittings = panelFitter.GetFittedPanels();
+        //[TestMethod]
+        //public void FitPanelsWithBudget()
+        //{
+        //    var panelFitter = new PanelFitter(Daylights, roofSize: (5, 4), budget: 1000);
+        //    panelFitter.FitPanels(Panels, 0);
+        //    var fittings = panelFitter.GetFittedPanels();
 
-            Assert.IsTrue(fittings.Length < Panels.Length);
-        }
+        //    Assert.IsTrue(fittings.Length < Panels.Length);
+        //}
     }
 }

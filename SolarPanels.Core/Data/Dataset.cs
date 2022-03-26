@@ -10,9 +10,12 @@ namespace SolarPanels.Core.Data
 {
     public class Dataset<T, J> where T : class, new()
     {
+        private static readonly string HomePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        private static readonly string DataPath = $"{HomePath}/source/repos/saiefelgebali/SolarPanels/data";
+
         public static T[] FromPath(string path)
         {
-            var text = File.ReadAllText(path);
+            var text = File.ReadAllText(Path.Combine(DataPath, path));
 
             var json = JsonSerializer.Deserialize<J[]>(text);
 
