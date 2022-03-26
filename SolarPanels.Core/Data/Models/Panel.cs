@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolarPanels.Core.Data.JSON;
+﻿using SolarPanels.Core.Data.JSON;
+using System;
 
 namespace SolarPanels.Core.Data.Models
 {
     public class Panel
     {
         public string Manufacturer;
-        public string Model  { get; private set; }
-        public string Url  { get; private set; }
-        public double Power  { get; private set; }
-        public double Efficiency  { get; private set; }
-        public double Weight  { get; private set; }
-        public double Cost  { get; private set; }
-        public double UsefulPower  { get; private set; }
+        public string Model { get; private set; }
+        public string Url { get; private set; }
+        public double Power { get; private set; }
+        public double Efficiency { get; private set; }
+        public double Weight { get; private set; }
+        public double Cost { get; private set; }
+        public double UsefulPower { get; private set; }
         public (double Length, double Width) Size { get; private set; }
 
         public Panel() { }

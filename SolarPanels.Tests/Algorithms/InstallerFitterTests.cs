@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using SolarPanels.Core.Algorithms;
-using SolarPanels.Core.Data.Models;
-using SolarPanels.Core;
+using System;
 
 namespace SolarPanels.Algorithms.Tests
 {
@@ -32,10 +30,10 @@ namespace SolarPanels.Algorithms.Tests
                     {
                         installerFitter.FitInstallers(panelCounts[i]);
                         Assert.Fail();
-                    } 
+                    }
                     catch (ArgumentException ex)
                     {
-                        Assert.IsInstanceOfType(ex, typeof (ArgumentException));
+                        Assert.IsInstanceOfType(ex, typeof(ArgumentException));
                     }
                     continue;
                 }

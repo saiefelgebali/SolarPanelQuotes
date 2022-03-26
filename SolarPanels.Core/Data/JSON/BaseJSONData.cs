@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SolarPanels.Core.Data.JSON
+﻿namespace SolarPanels.Core.Data.JSON
 {
     public abstract class BaseJSONData
     {

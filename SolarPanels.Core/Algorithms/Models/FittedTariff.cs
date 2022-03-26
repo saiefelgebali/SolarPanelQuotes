@@ -1,15 +1,11 @@
 ﻿using SolarPanels.Core.Data.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolarPanels.Core.Algorithms.Models
 {
     public class FittedTariff
     {
-        public Tariff Tariff{ get; private set; }
+        public Tariff Tariff { get; private set; }
 
         public double AverageConsumption { get; private set; }
 
@@ -25,8 +21,9 @@ namespace SolarPanels.Core.Algorithms.Models
             AverageConsumption = averageConsumption;
 
             // Get average feed amounts over each month
-            AverageFeedAmounts = fitting.AverageOutputs.Select(                
-                output => {
+            AverageFeedAmounts = fitting.AverageOutputs.Select(
+                output =>
+                {
                     // Subtract the average consumption from panel outputs
                     // feed amount is whatever there is left over.
                     var rawFeed = output - averageConsumption;

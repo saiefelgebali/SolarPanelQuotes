@@ -1,13 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolarPanels.Core;
-using SolarPanels.Core.Data.Models;
 using SolarPanels.Core.Algorithms;
+using SolarPanels.Core.Data.Models;
 
 namespace SolarPanels.Algorithms.Tests
 {

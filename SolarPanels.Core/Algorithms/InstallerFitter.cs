@@ -26,8 +26,8 @@ namespace SolarPanels.Core.Algorithms
             {
                 var installer = Installers[i];
 
-                var totalPrice = 
-                    installer.CallOutCost + 
+                var totalPrice =
+                    installer.CallOutCost +
                     (installer.CostPerPanel * panelCount);
 
                 fittedInstallers[i] = new FittedInstaller(installer, totalPrice);

@@ -2,26 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolarPanels.Core.Algorithms
 {
     public static class QuoteEstimator
     {
-        private static readonly PanelFitter PanelFitter = new ();
-        private static readonly InstallerFitter InstallerFitter = new ();
-        private static readonly TariffFitter TariffFitter = new ();
+        private static readonly PanelFitter PanelFitter = new();
+        private static readonly InstallerFitter InstallerFitter = new();
+        private static readonly TariffFitter TariffFitter = new();
 
         /// <summary>
         /// Handle every possible combination of quotes with the house specifications.
         /// </summary>
         /// <param name="specs"></param>
         /// <param name="handleQuote">Function that would handle each quote</param>
-        private static void GetQuotes(HouseSpecifications specs,Action<EstimatedQuote> handleQuote)
+        private static void GetQuotes(HouseSpecifications specs, Action<EstimatedQuote> handleQuote)
         {
             // Fit panels
-            var fittedPanels = PanelFitter.FitPanels(specs.RoofSize);
+            var fittedPanels = PanelFitter.FitPanels((specs.RoofLength, specs.RoofWidth));
 
             foreach (var fittedPanel in fittedPanels)
             {
@@ -46,7 +44,8 @@ namespace SolarPanels.Core.Algorithms
             var quotes = new List<EstimatedQuote>();
 
             // Add quote if it falls within the budget
-            GetQuotes(specs, (quote) => {
+            GetQuotes(specs, (quote) =>
+            {
                 if (quote.TotalPrice <= specs.Budget) quotes.Add(quote);
             });
 

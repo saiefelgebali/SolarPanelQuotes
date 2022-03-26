@@ -1,9 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
-using System.Text.Json;
-using SolarPanels.Core;
 using SolarPanels.Core.Algorithms;
-using System.Collections.Generic;
 using SolarPanels.Core.Algorithms.Models;
 
 namespace SolarPanels.Tests
@@ -11,10 +7,6 @@ namespace SolarPanels.Tests
     [TestClass]
     public class Main
     {
-        PanelFitter panelFitter = new PanelFitter();
-        InstallerFitter installerFitter = new InstallerFitter();
-        TariffFitter tariffFitter = new TariffFitter();
-
         [TestMethod]
         public void GetEstimatedQuotes()
         {
@@ -25,7 +17,8 @@ namespace SolarPanels.Tests
 
             var quotes = QuoteEstimator.GetQuotes(new HouseSpecifications
             {
-                RoofSize = roofSize,
+                RoofLength = roofSize.Item1,
+                RoofWidth = roofSize.Item2,
                 AverageConsumption = averageConsumption,
                 ElectricityCost = electricityCost,
                 Budget = budget
@@ -33,7 +26,7 @@ namespace SolarPanels.Tests
 
             Assert.IsNotNull(quotes);
         }
-        
+
         [TestMethod]
         public void GetEstimatedQuotesOutOfBudget()
         {
@@ -44,7 +37,8 @@ namespace SolarPanels.Tests
 
             var (quotes, quotesOOB) = QuoteEstimator.GetQuotesWithOutOfBudget(new HouseSpecifications
             {
-                RoofSize = roofSize,
+                RoofLength = roofSize.Item1,
+                RoofWidth = roofSize.Item2,
                 AverageConsumption = averageConsumption,
                 ElectricityCost = electricityCost,
                 Budget = budget

@@ -56,7 +56,7 @@ namespace SolarPanels.Core.Algorithms
         //    GetFittedPanels()
         //    .OrderBy(p => p.TotalPower)
         //    .ToArray();        
-        
+
         //public FittedPanel[] SortByUsefulPower() => 
         //    GetFittedPanels()
         //    .OrderBy(p => p.TotalUsefulPower)

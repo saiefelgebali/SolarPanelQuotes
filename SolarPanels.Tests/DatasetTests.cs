@@ -18,7 +18,7 @@ namespace SolarPanels.Tests
             Assert.IsInstanceOfType(sample.Month, typeof(int));
             Assert.IsInstanceOfType(sample.HoursOfDaylightPerDay, typeof(double));
         }
-        
+
         [TestMethod]
         public void ParseHouses()
         {
@@ -32,7 +32,7 @@ namespace SolarPanels.Tests
             Assert.IsInstanceOfType(sample.ElectricityCost, typeof(double));
             Assert.IsInstanceOfType(sample.RoofSize, typeof((double, double)));
         }
-        
+
         [TestMethod]
         public void ParseInstallers()
         {
@@ -66,7 +66,7 @@ namespace SolarPanels.Tests
 
             Assert.AreEqual(sample.UsefulPower, sample.Power * sample.Efficiency);
         }
-        
+
         [TestMethod]
         public void ParseTariffs()
         {

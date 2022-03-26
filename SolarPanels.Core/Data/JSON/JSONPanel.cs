@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SolarPanels.Core.Data.JSON
+﻿namespace SolarPanels.Core.Data.JSON
 {
     public class JSONPanel : BaseJSONData
     {

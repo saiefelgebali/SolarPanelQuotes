@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolarPanels.Core.Data.JSON;
+﻿using SolarPanels.Core.Data.JSON;
+using System;
 
 namespace SolarPanels.Core.Data.Models
 {
     public class Tariff
     {
         public string Name { get; private set; }
-        public double Price  { get; private set; }
-        public double ExpiredPrice  { get; private set; }
-        public double MinimumFeedAmount  { get; private set; }
-        public double MaximumFeedAmount  { get; private set; }
-        public DateTime Expiry  { get; private set; }
+        public double Price { get; private set; }
+        public double ExpiredPrice { get; private set; }
+        public double MinimumFeedAmount { get; private set; }
+        public double MaximumFeedAmount { get; private set; }
+        public DateTime Expiry { get; private set; }
 
         public Tariff() { }
 
