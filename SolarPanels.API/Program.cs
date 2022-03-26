@@ -22,4 +22,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Enable CORS
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.Run();
